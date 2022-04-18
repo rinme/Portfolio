@@ -1,8 +1,18 @@
 import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import { useState } from "react"
+
 
 export default function Home() {
+
+  const [welcome, setWelcome] = useState([])
+  async function fetchWelcome() {
+    /* Wait for respond */
+    const rWelcome = await fetch('/api/page/welcome')
+    /* And then convert to json */
+    const dWelcome = await rWelcome.json()
+    setWelcome(dWelcome)
+  }
+  window.onload = fetchWelcome;
   return (
     <>
       {/*Head : Contain title, metadata, icon*/}
@@ -15,11 +25,20 @@ export default function Home() {
       {/*Body : Yeah, It's body*/}
       <body>
         <div className="container">
-        <article class="prose lg:prose-xl">
-  # head xd
-  </article>
+          <article class="prose lg:prose-xl ml-8">
+            {
+              welcome.map(welcome => {
+                return (
+                  <div>
+                    {welcome.text}
+                  </div>
+                )
+              })
+            }
+            <h1></h1>
+          </article>
         </div>
       </body>
     </>
-  )
+  );
 }
