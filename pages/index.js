@@ -29,13 +29,12 @@ export default function Home() {
             {
               welcome.map(welcome => {
                 return (
-                  <div>
+                  <h1>
                     {welcome.text}
-                  </div>
+                  </h1>
                 )
               })
             }
-            <h1></h1>
           </article>
         </div>
       </body>
