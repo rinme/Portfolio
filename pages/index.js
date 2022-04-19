@@ -29,7 +29,7 @@ export default function Home() {
             {
               welcome.map(welcome => {
                 return (
-                  <h1>
+                  <h1 key={welcome.id}>
                     {welcome.text}
                   </h1>
                 )
