@@ -1,18 +1,6 @@
 import Head from 'next/head'
-import { useState } from "react"
-
 
 export default function Home() {
-
-  const [welcome, setWelcome] = useState([])
-  async function fetchWelcome() {
-    /* Wait for respond */
-    const rWelcome = await fetch('/api/page/welcome')
-    /* And then convert to json */
-    const dWelcome = await rWelcome.json()
-    setWelcome(dWelcome)
-  }
-  window.onload = fetchWelcome;
   return (
     <>
       {/*Head : Contain title, metadata, icon*/}
@@ -24,19 +12,7 @@ export default function Home() {
 
       {/*Body : Yeah, It's body*/}
       <body>
-        <div className="container">
-          <article class="prose lg:prose-xl ml-8">
-            {
-              welcome.map(welcome => {
-                return (
-                  <h1 key={welcome.id}>
-                    {welcome.text}
-                  </h1>
-                )
-              })
-            }
-          </article>
-        </div>
+        <p>hi</p>
       </body>
     </>
   );
