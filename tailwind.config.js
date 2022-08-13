@@ -1,22 +1,14 @@
 module.exports = {
-  daisyui: {
-    styled: true,
-    themes: true,
-    base: true,
-    utils: true,
-    logs: true,
-    rtl: false,
-    prefix: "",
-    darkTheme: "rintheme",
-    themes: [],
-  },
+  darkMode: 'class',
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx}",
     "./src/components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    typography: (theme) => ({}),
     extend: {},
   },
+  variants: {},
   plugins: [
     require("daisyui"),
     require("@tailwindcss/typography"),
