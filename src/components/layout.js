@@ -1,5 +1,13 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { motion } from "framer-motion";
+import Header from "../components/header";
+
+const variants = {
+  hidden: { opacity: 0, x: -200, y: 0 },
+  enter: { opacity: 1, x: 0, y: 0 },
+  exit: { opacity: 0, x: 0, y: -100 },
+};
 
 export default function Layout({ children }) {
   const router = useRouter();
@@ -20,32 +28,44 @@ export default function Layout({ children }) {
   ];
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <header className="bg-purple-200 sticky top-0 h-14 flex justify-center items-center font-semibold uppercase">
-        Hi!
-      </header>
-      <div className="flex flex-col md:flex-row flex-1">
-        <aside className="bg-fuchsia-100 w-full md:w-60">
-          <nav>
-            <ul>
-              {menuItems.map(({ href, title }) => (
-                <li className="m-2" key={title}>
-                  <Link href={href}>
-                    <a
-                      className={`flex p-2 bg-fuchsia-200 rounded hover:bg-fuchsia-400 cursor-pointer ${
-                        router.asPath === href && "bg-fuchsia-600 text-white"
-                      }`}
-                    >
-                      {title}
-                    </a>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
-        </aside>
-        <main className="flex-1">{children}</main>
+    <>
+      <div className="min-h-screen flex flex-col">
+        <Header />
+        <div className="flex flex-col md:flex-row flex-1">
+          <div className="drawer">
+            <input id="nav-drawer" type="checkbox" className="drawer-toggle" />
+            <div className="drawer-content">
+              <label for="nav-drawer" className="btn btn-primary drawer-button">
+                =
+              </label>
+            </div>
+            <div className="drawer-side w-80">
+              <label for="nav-drawer" className="drawer-overlay w-80"></label>
+              <ul className="menu p-4 overflow-y-auto w-80 bg-base-100 text-base-content">
+                {menuItems.map(({ href, title }) => (
+                  <li className="m-2" key={title}>
+                    <Link href={href}>
+                      <a>{title}</a>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+          <motion.main
+            initial="hidden"
+            animate="enter"
+            exit="exit"
+            variants={variants}
+            transition={{ type: "easeIn" }}
+            className="
+                    flex-1
+                "
+          >
+            {children}
+          </motion.main>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
