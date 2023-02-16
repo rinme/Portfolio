@@ -11,7 +11,7 @@
   "dependencies": {
     "@tailwindcss/aspect-ratio": "^0.4.0",
     "@tailwindcss/typography": "^0.5.2",
-    "autoprefixer": "^10.4.8",
+    "autoprefixer": "^10.4.13",
     "axios": "^0.26.1",
     "cross-env": "^7.0.3",
     "daisyui": "^2.14.1",
