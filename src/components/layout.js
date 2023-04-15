@@ -30,14 +30,14 @@ export default function Layout({ children }) {
             <ul>
               {menuItems.map(({ href, title }) => (
                 <li className="m-2" key={title}>
-                  <Link href={href}>
-                    <a
-                      className={`flex p-2 bg-fuchsia-200 rounded hover:bg-fuchsia-400 cursor-pointer ${
-                        router.asPath === href && "bg-fuchsia-600 text-white"
-                      }`}
-                    >
-                      {title}
-                    </a>
+                  <Link
+                    href={href}
+                    className={`flex p-2 bg-fuchsia-200 rounded hover:bg-fuchsia-400 cursor-pointer ${
+                      router.asPath === href && "bg-fuchsia-600 text-white"
+                    }`}>
+
+                    {title}
+
                   </Link>
                 </li>
               ))}
